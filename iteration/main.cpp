@@ -17,17 +17,34 @@ int main() {
   // Uniformly distribute random numbers [1..10]
   uniform_int_distribution<> dis{1, 10};
 
-  int a{dis(engine)};
-  int b{dis(engine)};
+  constexpr int questionCount{3};
 
-  cout << a << " * " << b << " = ? ";
-  int answer{};
-  cin >> answer;
+  int correctAnswers{0};
 
-  if (answer == (a * b)) {
-    cout << "You are correct\n";
-  } else {
-    cout << "Wrong!\n";
+  for (int i = 0; i < questionCount; i++) {
+    int a{dis(engine)};
+    int b{dis(engine)};
+
+    cout << a << " * " << b << " = ? ";
+    int answer{};
+    cin >> answer;
+
+    if (answer == (a * b)) {
+      cout << "You are correct";
+      correctAnswers++;
+    } else {
+      cout << "Wrong!";
+    }
+    cout << "\n\n";
+  }
+  cout << "Correct answers: " << correctAnswers << '\n';
+
+  if (correctAnswers == questionCount) {
+    cout << "Your answers were all correct :)" << '\n';
+  }
+
+  if (!correctAnswers) {
+    cout << "Your answers were all wrong :(" << '\n';
   }
 
   return 0;
