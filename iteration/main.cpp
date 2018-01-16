@@ -17,9 +17,18 @@ int main() {
   // Uniformly distribute random numbers [1..10]
   uniform_int_distribution<> dis{1, 10};
 
-  int x{dis(engine)};
+  int a{dis(engine)};
+  int b{dis(engine)};
 
-  cout << x << '\n';
+  cout << a << " * " << b << " = ? ";
+  int answer{};
+  cin >> answer;
+
+  if (answer == (a * b)) {
+    cout << "You are correct\n";
+  } else {
+    cout << "Wrong!\n";
+  }
 
   return 0;
 }
